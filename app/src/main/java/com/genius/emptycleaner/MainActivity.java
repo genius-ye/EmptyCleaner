@@ -89,7 +89,14 @@ public class MainActivity extends AppCompatActivity {
         selectFiles = new ArrayList<>();
 
         textView = (TextView) findViewById(R.id.activity_textview);
-        textView.setText("总空间："+getTotalInternalMemorySize()/(1024*1024) + "M  剩余空间："+getAvailableInternalMemorySize()/(1024*1024)+"M");
+
+        try {
+            textView.setText("总空间："+getTotalInternalMemorySize()/(1024*1024) + "M  剩余空间："+getAvailableInternalMemorySize()/(1024*1024)+"M");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            textView.setText("获取空间失败");
+        }
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
